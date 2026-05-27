@@ -29,8 +29,11 @@
                 css   = "expanded";
               };
             };
-            design = {
-              zero = "unslashed";
+            variants.design = {
+              digit-form = "old-style";
+              zero       = "unslashed";
+              m          = "top-left-and-bottom-right-serifed";
+              lower-chi  = "semi-chancery-straight-serifed";
             };
             exportGlyphNames = false;
           };
