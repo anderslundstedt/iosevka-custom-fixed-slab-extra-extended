@@ -4,8 +4,8 @@
   description                 = "My custom build of Iosevka";
 
   inputs.nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
-  inputs.nixpkgs-darwin.url   = "nixpkgs/nixpkgs-25.11-darwin";
-  inputs.nixpkgs-linux.url    = "nixpkgs/nixos-25.11";
+  inputs.nixpkgs-darwin.url   = "nixpkgs/nixpkgs-26.05-darwin";
+  inputs.nixpkgs-linux.url    = "nixpkgs/nixos-26.05";
 
   outputs = {nixpkgs-unstable,nixpkgs-darwin,nixpkgs-linux,...}: (
     let
