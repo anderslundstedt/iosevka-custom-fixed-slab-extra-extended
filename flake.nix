@@ -1,13 +1,15 @@
 # flake based on
 # https://github.com/NixOS/templates/blob/ad0e221dda33c4b564fad976281130ce34a20cb9/bash-hello/flake.nix
 {
-  description                 = "My custom build of Iosevka";
+  description = "My custom build of Iosevka";
 
-  inputs.nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
-  inputs.nixpkgs-darwin.url   = "nixpkgs/nixpkgs-26.05-darwin";
-  inputs.nixpkgs-linux.url    = "nixpkgs/nixos-26.05";
+  inputs.pins.url = "github:anderslundstedt/nix-pins";
 
-  outputs = {nixpkgs-unstable,nixpkgs-darwin,nixpkgs-linux,...}: (
+  inputs.nixpkgs-unstable.follows      = "pins/nixpkgs-unstable";
+  inputs.nixpkgs-darwin-stable.follows = "pins/nixpkgs-darwin-stable";
+  inputs.nixpkgs-linux-stable.follows  = "pins/nixos-stable";
+
+  outputs = {nixpkgs-unstable,nixpkgs-darwin-stable,nixpkgs-linux-stable,...}: (
     let
       # confirmed to work on the following systems
       systems-linux    = ["x86_64-linux"  "aarch64-linux"];
@@ -20,9 +22,9 @@
 
       get-nixpkgs-stable = system: (
         if      builtins.elem system systems-linux  then
-          nixpkgs-linux
+          nixpkgs-linux-stable
         else if builtins.elem system systems-darwin then
-          nixpkgs-darwin
+          nixpkgs-darwin-stable
         else
           nixpkgs-unstable
       );
